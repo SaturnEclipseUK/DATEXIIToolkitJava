@@ -1,0 +1,8 @@
+build/
+bin/
+nwk_model*
+.classpath
+.gradle
+.project
+.settings
+.springBeans

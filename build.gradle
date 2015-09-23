@@ -1,0 +1,86 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+        classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
+        classpath('commons-httpclient:commons-httpclient:3.1')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+apply plugin: 'spring-boot' 
+apply plugin: 'io.spring.dependency-management' 
+apply plugin: 'war'
+
+version = '0.1'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+war {
+    baseName = 'datex2-client-toolkit'    
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime    
+	jaxb
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("commons-httpclient:commons-httpclient:3.1")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") 
+    
+    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.4-1'
+}
+
+
+eclipse {
+    classpath {
+         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+
+    def jvmOpts = "-Xmx3000m"
+    inputs.property("jvmOpts", jvmOpts)
+    doLast {
+        def optsEnvVar = "DEFAULT_JVM_OPTS"
+        scriptFile.write scriptFile.text.replace("$optsEnvVar=\"\"", "$optsEnvVar=\"$jvmOpts\"")
+        batchScript.write batchScript.text.replace("set $optsEnvVar=", "set $optsEnvVar=$jvmOpts")
+    }
+}
+
+test {
+	maxHeapSize = "3000m"
+	testLogging {
+		systemProperties 'logback.configurationFile' : new File('src/main/resources/logback.xml').absolutePath		
+		showStandardStreams = true		
+	}
+}
+run {
+	maxHeapSize = "3000m"
+}
+
+task jaxb << {
+	ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask',  classpath: configurations.jaxb.asPath)
+	ant.xjc(destdir: "src/main/java", package: "com.se.datex2.schema") {
+    	schema(dir: "src/main/webapp/xsd/", includes: 'DATEX_II_2_0_NTIS_Extensions_R2.5_v7.xsd')
+	}
+}
+eclipseClasspath.dependsOn(jaxb)
+
