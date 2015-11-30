@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.se.datex2.common.UnZipUtils;
 
@@ -35,7 +36,11 @@ public class DATEXIINetworkModelUpdateService {
 		
 		this.removeExistingNetworkModel();
 		
-		this.fetchNetworkModel(url);
+		if (url.startsWith("file:///")){
+			copyNetworkModel(url);
+		} else {
+			this.fetchNetworkModel(url);
+		}
 	    
 	    this.unzipNetworkModel();
 		 
@@ -46,9 +51,19 @@ public class DATEXIINetworkModelUpdateService {
 		log.info("Removing existing network model");
 		try {
 			FileUtils.deleteDirectory(new File(NWK_MODEL_DIRECTORY));
+			new File(NWK_MODEL_PATH).delete();
 		} catch (IOException e) {
 			log.error("Error removing directory: "+e.toString(),e);
 			return;
+		}
+	}
+	
+	private void copyNetworkModel(String path){
+		path = path.replace("file:///", "");
+		try {
+			Files.copy(new File(path).toPath(), new File(NWK_MODEL_PATH).toPath());
+		} catch (IOException e) {
+			log.error("Error copying file: "+path, e);
 		}
 	}
 	

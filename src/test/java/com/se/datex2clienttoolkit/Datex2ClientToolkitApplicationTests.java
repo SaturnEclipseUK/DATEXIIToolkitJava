@@ -2,29 +2,28 @@ package com.se.datex2clienttoolkit;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.se.datex2clienttoolkit.controllers.DATEXIIClientController;
 import com.se.datex2clienttoolkit.controllers.DataObjectController;
-import com.se.datex2clienttoolkit.datastores.data.VMSData;
 import com.se.datex2clienttoolkit.services.DATEXIIUpdateService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Datex2ClientToolkitApplication.class)
+@TestPropertySource(locations="classpath:test.properties")
 @WebAppConfiguration
 public class Datex2ClientToolkitApplicationTests {
 	
