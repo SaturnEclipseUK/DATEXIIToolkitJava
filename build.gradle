@@ -33,7 +33,7 @@ repositories {
 
 configurations {
     providedRuntime    
-	jaxb
+    jaxb
 }
 
 dependencies {

@@ -6,3 +6,4 @@ nwk_model*
 .project
 .settings
 .springBeans
+#src/main/java/com/se/datex2/schema/

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.se.datex2clienttoolkit.controllers.DATEXIIClientController;
 import com.se.datex2clienttoolkit.controllers.DataObjectController;
 import com.se.datex2clienttoolkit.datastores.data.VMSData;
+import com.se.datex2clienttoolkit.services.DATEXIIUpdateService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Datex2ClientToolkitApplication.class)
@@ -32,6 +33,9 @@ public class Datex2ClientToolkitApplicationTests {
 	
 	@Autowired
 	DATEXIIClientController datexIIClientController;
+	
+	@Autowired
+	DATEXIIUpdateService datexIIUpdateService;
 	
 	@Before
 	public void setup(){
@@ -86,9 +90,18 @@ public class Datex2ClientToolkitApplicationTests {
 	
 	@Test
 	public void processDataUpdate() {
+		while (!datexIIUpdateService.workPending()){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		try {
-			Thread.sleep(10000);
+			
+			// print the size of each data store
 			System.out.println("ANPR Data Size = " + dataObjectController.anprDataAll().size());
 			System.out.println("Event Data Size = " +dataObjectController.eventDataAll().size());
 			System.out.println("VMS Data Size = " + dataObjectController.vmsDataAll().size());
@@ -97,7 +110,7 @@ public class Datex2ClientToolkitApplicationTests {
 			System.out.println("Fused Sensor Only Data Size = " + dataObjectController.fusedSensorOnlyDataAll().size());
 			System.out.println("Fused FVD and Sensor Data Size = " + dataObjectController.fusedFVDAndSensorDataAll().size());
 			
-			
+			// print a single object from each data store 
 			ObjectMapper mapper = new ObjectMapper();
 
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.tmuData("C6E971CAD2DC789BE0433CC411ACCCEA")));
@@ -112,11 +125,32 @@ public class Datex2ClientToolkitApplicationTests {
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.fusedSensorOnlyData("TrafficSpeed200109359")));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.fusedSensorOnlyData("TravelTimeData200109359")));
 			
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.eventData("UF-15-04-28-000100")));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.anprData("ANPR_Measurement_Site_30070608")));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.vmsData("D25095020A9C7952E0433CC411ACA994")));
-			Thread.sleep(3000);
-		} catch (InterruptedException | JsonProcessingException e) {
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.eventData("UF-15-04-28-000100")));			
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.anprData("1430297819000ANPR_Measurement_Site_30071390")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.vmsData("D25095020A9C7952E0433CC411ACA994")));		
+			
+			// Network model data
+			
+			// VMS & Matrix Signal
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.vmsStaticData("F1CED9A9D71616DCE0438DC611AC6AA4")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.matrixSignalStaticData("D25095020D4F7952E0433CC411ACA994")));
+			
+			// Measurement Sites
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.tameStaticData("C6ED3C0233073F7DE0433CC411AC7306")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.midasStaticData("8E08E9D3D31C4BFC99B1D008B83F8C15")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.anprStaticData("ANPR_Measurement_Site_30071670")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.tmuStaticData("C6E971CAD36B789BE0433CC411ACCCEA")));
+			
+			// Predefined Locations
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.linkShapeStaticData("108041601_0")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.nwkLinkStaticData("108041601")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.anprRouteStaticData("NTIS_ANPR_Route_30071670_0")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.hatrisSectionStaticData("HS50000001_0")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.nwkNodeStaticData("1100291")));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataObjectController.alternateRouteStaticData("8200001_0")));
+			
+			
+		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

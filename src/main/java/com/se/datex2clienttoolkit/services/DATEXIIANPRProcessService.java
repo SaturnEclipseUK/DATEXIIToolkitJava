@@ -62,7 +62,7 @@ public class DATEXIIANPRProcessService extends DATEXIIProcessService {
 	}
 	
 	private void processSituation(SiteMeasurements siteMeasurements, Date publicationTime) {
-		String anprIdentifier = siteMeasurements.getMeasurementTimeDefault().toGregorianCalendar().getTime() + siteMeasurements.getMeasurementSiteReference().getId();
+		String anprIdentifier = siteMeasurements.getMeasurementTimeDefault().toGregorianCalendar().getTime().getTime() + siteMeasurements.getMeasurementSiteReference().getId();
 
 		if (log.isTraceEnabled()){
 			log.trace("Processing ANPR Identifier("+anprIdentifier+")");

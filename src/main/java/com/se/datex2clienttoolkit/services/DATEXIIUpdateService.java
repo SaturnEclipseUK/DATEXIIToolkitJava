@@ -30,23 +30,30 @@ public class DATEXIIUpdateService {
 	
 	private ConcurrentLinkedQueue<String> messageQueue;
 	
+	private boolean working = false;
+	
 	public DATEXIIUpdateService(){
 		messageQueue = new ConcurrentLinkedQueue<String>();
 	}
 	
 	public void addToMessageQueue(String xml){
 		if (xml != null){
-			messageQueue.add(xml);
+			synchronized (messageQueue){
+				messageQueue.add(xml);
+			}
 		}
 	}
 	
 	@Scheduled(fixedRate = 1000)
 	public void processDATEXIIUpdateXML(){
-		
+		working = true;
 		if (logger.isTraceEnabled()){
 			logger.trace("Polling for messages");
 		}
-		String xml = messageQueue.poll();
+		String xml;
+		synchronized (messageQueue){
+			xml = messageQueue.poll();
+		}
 		while (xml != null){
 			try {
 				Unmarshaller unmarshaller = jaxbService.createUnmarshaller();
@@ -64,12 +71,21 @@ public class DATEXIIUpdateService {
 			} catch (JAXBException e) {
 				logger.error("Failed to process XML", e);
 			}
-			xml = messageQueue.poll();
+			synchronized (messageQueue){
+				xml = messageQueue.poll();
+			}
 		}
+		working = false;
 	}
 
 	private FeedType getFeedType(D2LogicalModel d2lm){
 		String feedType=d2lm.getPayloadPublication().getFeedType();
 		return FeedType.getFeedType(feedType);
+	}
+	
+	public boolean workPending(){
+		synchronized (messageQueue){
+			return messageQueue.isEmpty() && !working;
+		}
 	}
 }
