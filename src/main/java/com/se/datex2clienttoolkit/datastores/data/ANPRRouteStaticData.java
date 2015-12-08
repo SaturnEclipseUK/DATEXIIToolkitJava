@@ -15,6 +15,7 @@ public class ANPRRouteStaticData implements DataObject {
 	
 	public ANPRRouteStaticData(String anprRouteStaticIdentifier, Date publicationTime, PredefinedLocation anprRouteStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.anprRouteStaticIdentifier = anprRouteStaticIdentifier;
 		this.anprRouteStaticData = anprRouteStaticData;
 	}

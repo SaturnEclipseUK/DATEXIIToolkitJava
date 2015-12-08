@@ -107,7 +107,7 @@ public class DataObjectController {
 	@Autowired
 	AlternateRouteStaticDataStore alternateRouteStaticDataStore;
 
-	@RequestMapping("/vms")
+	@RequestMapping("/vms")	
     public VMSData vmsData(@RequestParam(value="id") String id) {
 		return (VMSData) vmsDataStore.getData(id);
     }
@@ -115,6 +115,11 @@ public class DataObjectController {
 	@RequestMapping("/vms/all")
 	public List<VMSData> vmsDataAll(){
 		return vmsDataStore.getAllVMSData();
+	}
+	
+	@RequestMapping("/vms/count")
+	public int vmsDataCount(){
+		return vmsDataStore.getAllVMSData().size();
 	}
 	
 	@RequestMapping("/event")
@@ -127,6 +132,11 @@ public class DataObjectController {
 		return eventDataStore.getAllEventData();
 	}
 	
+	@RequestMapping("/event/count")
+	public int eventDataCount(){
+		return eventDataStore.getAllEventData().size();
+	}
+	
 	@RequestMapping("/anpr")
     public ANPRData anprData(@RequestParam(value="id") String id) {
 		return (ANPRData) anprDataStore.getData(id);
@@ -135,6 +145,11 @@ public class DataObjectController {
 	@RequestMapping("/anpr/all")
 	public List<ANPRData> anprDataAll(){
 		return anprDataStore.getAllANPRData();
+	}
+	
+	@RequestMapping("/anpr/count")
+	public int anprDataCount(){
+		return anprDataStore.getAllANPRData().size();
 	}
 	
 	@RequestMapping("/fusedFVDAndSensor")
@@ -147,6 +162,11 @@ public class DataObjectController {
 		return fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData();
 	}
 	
+	@RequestMapping("/fusedFVDAndSensor/count")
+	public int fusedFVDAndSensorDataCount(){
+		return fusedFVDAndSensorDataStore.getAllFusedFVDAndSensorData().size();
+	}
+	
 	@RequestMapping("/fusedSensorOnly")
     public FusedSensorOnlyData fusedSensorOnlyData(@RequestParam(value="id") String id) {
 		return (FusedSensorOnlyData) fusedSensorOnlyDataStore.getData(id);
@@ -155,6 +175,11 @@ public class DataObjectController {
 	@RequestMapping("/fusedSensorOnly/all")
 	public List<FusedSensorOnlyData> fusedSensorOnlyDataAll(){
 		return fusedSensorOnlyDataStore.getAllFusedSensorOnlyData();
+	}
+	
+	@RequestMapping("/fusedSensorOnly/count")
+	public int fusedSensorOnlyDataCount(){
+		return fusedSensorOnlyDataStore.getAllFusedSensorOnlyData().size();
 	}
 	
 	@RequestMapping("/midas")
@@ -167,6 +192,11 @@ public class DataObjectController {
 		return midasDataStore.getAllMIDASData();
 	}
 	
+	@RequestMapping("/midas/count")
+	public int midasDataCount(){
+		return midasDataStore.getAllMIDASData().size();
+	}
+	
 	@RequestMapping("/tmu")
     public TMUData tmuData(@RequestParam(value="id") String id) {
 		return (TMUData) tmuDataStore.getData(id);
@@ -175,6 +205,11 @@ public class DataObjectController {
 	@RequestMapping("/tmu/all")
 	public List<TMUData> tmuDataAll(){
 		return tmuDataStore.getAllTMUData();
+	}
+	
+	@RequestMapping("/tmu/count")
+	public int tmuDataCount(){
+		return tmuDataStore.getAllTMUData().size();
 	}
 	
 	@RequestMapping("/vmsStatic")
@@ -187,6 +222,11 @@ public class DataObjectController {
 		return vmsStaticDataStore.getAllVMSStaticData();
 	}
 	
+	@RequestMapping("/vmsStatic/count")
+	public int vmsStaticDataCount(){
+		return vmsStaticDataStore.getAllVMSStaticData().size();
+	}
+	
 	@RequestMapping("/matrixSignalStatic")
     public MatrixSignalStaticData matrixSignalStaticData(@RequestParam(value="id") String id) {
 		return (MatrixSignalStaticData) matrixSignalStaticDataStore.getData(id);
@@ -195,6 +235,11 @@ public class DataObjectController {
 	@RequestMapping("/matrixSignalStatic/all")
 	public List<MatrixSignalStaticData> matrixSignalStaticDataAll(){
 		return matrixSignalStaticDataStore.getAllMatrixSignalStaticData();
+	}
+	
+	@RequestMapping("/matrixSignalStatic/count")
+	public int matrixSignalStaticDataCount(){
+		return matrixSignalStaticDataStore.getAllMatrixSignalStaticData().size();
 	}
 	
 	@RequestMapping("/tameStatic")
@@ -207,6 +252,10 @@ public class DataObjectController {
 		return tameStaticDataStore.getAllTAMEStaticData();
 	}
 
+	@RequestMapping("/tameStatic/count")
+	public int tameStaticDataCount(){
+		return tameStaticDataStore.getAllTAMEStaticData().size();
+	}
 
 	@RequestMapping("/midasStatic")
 	public MIDASStaticData midasStaticData(@RequestParam(value="id") String id) {
@@ -218,6 +267,10 @@ public class DataObjectController {
 		return midasStaticDataStore.getAllMIDASStaticData();
 	}
 
+	@RequestMapping("/midasStatic/count")
+	public int midasStaticDataCount(){
+		return midasStaticDataStore.getAllMIDASStaticData().size();
+	}
 
 	@RequestMapping("/anprStatic")
 	public ANPRStaticData anprStaticData(@RequestParam(value="id") String id) {
@@ -229,7 +282,11 @@ public class DataObjectController {
 		return anprStaticDataStore.getAllANPRStaticData();
 	}
 
-
+	@RequestMapping("/anprStatic/count")
+	public int anprStaticDataCount(){
+		return anprStaticDataStore.getAllANPRStaticData().size();
+	}
+	
 	@RequestMapping("/tmuStatic")
 	public TMUStaticData tmuStaticData(@RequestParam(value="id") String id) {
 		return (TMUStaticData) tmuStaticDataStore.getData(id);
@@ -238,6 +295,11 @@ public class DataObjectController {
 	@RequestMapping("/tmuStatic/all")
 	public List<TMUStaticData> tmuStaticDataAll(){
 		return tmuStaticDataStore.getAllTMUStaticData();
+	}
+	
+	@RequestMapping("/tmuStatic/count")
+	public int tmuStaticDataCount(){
+		return tmuStaticDataStore.getAllTMUStaticData().size();
 	}
 
 	@RequestMapping("/linkShapeStatic")
@@ -250,6 +312,10 @@ public class DataObjectController {
 		return linkShapeStaticDataStore.getAllLinkShapeStaticData();
 	}
 
+	@RequestMapping("/linkShapeStatic/count")
+	public int linkShapeStaticDataCount(){
+		return linkShapeStaticDataStore.getAllLinkShapeStaticData().size();
+	}
 
 	@RequestMapping("/nwkLinkStatic")
 	public NwkLinkStaticData nwkLinkStaticData(@RequestParam(value="id") String id) {
@@ -261,6 +327,10 @@ public class DataObjectController {
 		return nwkLinkStaticDataStore.getAllNwkLinkStaticData();
 	}
 
+	@RequestMapping("/nwkLinkStatic/count")
+	public int nwkLinkStaticDataCount(){
+		return nwkLinkStaticDataStore.getAllNwkLinkStaticData().size();
+	}
 
 	@RequestMapping("/anprRouteStatic")
 	public ANPRRouteStaticData anprRouteStaticData(@RequestParam(value="id") String id) {
@@ -272,7 +342,11 @@ public class DataObjectController {
 		return anprRouteStaticDataStore.getAllANPRRouteStaticData();
 	}
 
-
+	@RequestMapping("/anprRouteStatic/count")
+	public int anprRouteStaticDataCount(){
+		return anprRouteStaticDataStore.getAllANPRRouteStaticData().size();
+	}
+	
 	@RequestMapping("/hatrisSectionStatic")
 	public HATRISSectionStaticData hatrisSectionStaticData(@RequestParam(value="id") String id) {
 		return (HATRISSectionStaticData) hatrisSectionStaticDataStore.getData(id);
@@ -283,6 +357,10 @@ public class DataObjectController {
 		return hatrisSectionStaticDataStore.getAllHATRISSectionStaticData();
 	}
 
+	@RequestMapping("/hatrisSectionStatic/count")
+	public int hatrisSectionStaticDataCount(){
+		return hatrisSectionStaticDataStore.getAllHATRISSectionStaticData().size();
+	}
 
 	@RequestMapping("/nwkNodeStatic")
 	public NwkNodeStaticData nwkNodeStaticData(@RequestParam(value="id") String id) {
@@ -294,6 +372,10 @@ public class DataObjectController {
 		return nwkNodeStaticDataStore.getAllNwkNodeStaticData();
 	}
 
+	@RequestMapping("/nwkNodeStatic/count")
+	public int nwkNodeStaticDataCount(){
+		return nwkNodeStaticDataStore.getAllNwkNodeStaticData().size();
+	}
 
 	@RequestMapping("/alternateRouteStatic")
 	public AlternateRouteStaticData alternateRouteStaticData(@RequestParam(value="id") String id) {
@@ -303,5 +385,10 @@ public class DataObjectController {
 	@RequestMapping("/alternateRouteStatic/all")
 	public List<AlternateRouteStaticData> alternateRouteStaticDataAll(){
 		return alternateRouteStaticDataStore.getAllAlternateRouteStaticData();
+	}
+	
+	@RequestMapping("/alternateRouteStatic/count")
+	public int alternateRouteStaticDataCount(){
+		return alternateRouteStaticDataStore.getAllAlternateRouteStaticData().size();
 	}
 }

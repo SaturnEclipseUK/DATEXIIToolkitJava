@@ -15,6 +15,7 @@ public class NwkLinkStaticData implements DataObject {
 	
 	public NwkLinkStaticData(String nwkLinkStaticIdentifier, Date publicationTime, PredefinedLocation nwkLinkStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.nwkLinkStaticIdentifier = nwkLinkStaticIdentifier;
 		this.nwkLinkStaticData = nwkLinkStaticData;
 	}

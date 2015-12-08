@@ -15,6 +15,7 @@ public class HATRISSectionStaticData implements DataObject {
 	
 	public HATRISSectionStaticData(String hatrisSectionStaticIdentifier, Date publicationTime, PredefinedLocation hatrisSectionStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.hatrisSectionStaticIdentifier = hatrisSectionStaticIdentifier;
 		this.hatrisSectionStaticData = hatrisSectionStaticData;
 	}

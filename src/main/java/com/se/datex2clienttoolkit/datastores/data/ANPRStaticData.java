@@ -15,6 +15,7 @@ public class ANPRStaticData implements DataObject {
 	
 	public ANPRStaticData(String anprStaticIdentifier, Date publicationTime, MeasurementSiteRecord anprStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.anprStaticIdentifier = anprStaticIdentifier;
 		this.anprStaticData = anprStaticData;
 	}

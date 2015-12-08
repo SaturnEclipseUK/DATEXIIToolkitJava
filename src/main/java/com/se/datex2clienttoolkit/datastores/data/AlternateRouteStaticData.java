@@ -15,6 +15,7 @@ public class AlternateRouteStaticData implements DataObject {
 	
 	public AlternateRouteStaticData(String alternateRouteStaticIdentifier, Date publicationTime, PredefinedLocation alternateRouteStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.alternateRouteStaticIdentifier = alternateRouteStaticIdentifier;
 		this.alternateRouteStaticData = alternateRouteStaticData;
 	}

@@ -15,6 +15,7 @@ public class TMUStaticData implements DataObject {
 	
 	public TMUStaticData(String tmuStaticIdentifier, Date publicationTime, MeasurementSiteRecord tmuStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.tmuStaticIdentifier = tmuStaticIdentifier;
 		this.tmuStaticData = tmuStaticData;
 	}

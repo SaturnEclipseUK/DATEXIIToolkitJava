@@ -15,6 +15,7 @@ public class EventData implements DataObject {
 	
 	public EventData(String eventIdentifier, Date publicationTime, Situation eventData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.eventIdentifier = eventIdentifier;
 		this.eventData = eventData;
 	}

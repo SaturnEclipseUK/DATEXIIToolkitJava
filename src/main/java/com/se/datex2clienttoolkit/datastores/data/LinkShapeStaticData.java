@@ -15,6 +15,7 @@ public class LinkShapeStaticData implements DataObject {
 	
 	public LinkShapeStaticData(String linkShapeStaticIdentifier, Date publicationTime, PredefinedLocation linkShapeStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.linkShapeStaticIdentifier = linkShapeStaticIdentifier;
 		this.linkShapeStaticData = linkShapeStaticData;
 	}

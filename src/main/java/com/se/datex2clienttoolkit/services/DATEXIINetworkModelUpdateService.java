@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
@@ -16,8 +18,8 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.se.datex2.common.UnZipUtils;
 
@@ -29,9 +31,19 @@ public class DATEXIINetworkModelUpdateService {
 	@Autowired
 	DATEXIIUpdateService datexIIUpdateService;
 	
+	@Value("${loadCachedNwkModelOnStartup}")
+	private Boolean loadCachedNwkModelOnStartup;
+	
 	String NWK_MODEL_PATH = "nwk_model.zip";
 	String NWK_MODEL_DIRECTORY = "nwk_model";
     
+	@PostConstruct
+	public void initialise(){
+		if (loadCachedNwkModelOnStartup && Files.exists(new File(NWK_MODEL_DIRECTORY).toPath())){
+			this.parseNetworkModelXMLFiles();
+		}
+	}
+	
 	public void updateNetworkModel(String url){
 		
 		this.removeExistingNetworkModel();

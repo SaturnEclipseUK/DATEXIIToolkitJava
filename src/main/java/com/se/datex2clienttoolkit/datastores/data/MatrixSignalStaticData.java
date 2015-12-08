@@ -15,6 +15,7 @@ public class MatrixSignalStaticData implements DataObject {
 	
 	public MatrixSignalStaticData(String matrixSignalStaticIdentifier, Date publicationTime, VmsUnitRecord matrixSignalStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.matrixSignalStaticIdentifier = matrixSignalStaticIdentifier;
 		this.matrixSignalStaticData = matrixSignalStaticData;
 	}

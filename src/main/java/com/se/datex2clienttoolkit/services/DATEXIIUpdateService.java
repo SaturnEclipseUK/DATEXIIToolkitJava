@@ -103,7 +103,7 @@ public class DATEXIIUpdateService {
 		}
 		working = false;
 	}
-
+	
 	private FeedType getFeedType(D2LogicalModel d2lm){
 		String feedType=d2lm.getPayloadPublication().getFeedType();
 		return FeedType.getFeedType(feedType);

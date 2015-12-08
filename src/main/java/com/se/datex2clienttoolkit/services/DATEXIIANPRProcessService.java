@@ -62,13 +62,18 @@ public class DATEXIIANPRProcessService extends DATEXIIProcessService {
 	}
 	
 	private void processSituation(SiteMeasurements siteMeasurements, Date publicationTime) {
-		String anprIdentifier = siteMeasurements.getMeasurementTimeDefault().toGregorianCalendar().getTime().getTime() + siteMeasurements.getMeasurementSiteReference().getId();
+		String anprIdentifier = siteMeasurements.getMeasurementSiteReference().getId();
 
 		if (log.isTraceEnabled()){
 			log.trace("Processing ANPR Identifier("+anprIdentifier+")");
 		}
 		
-		ANPRData anprData = new ANPRData(anprIdentifier, publicationTime, siteMeasurements);
+		ANPRData anprData = (ANPRData)anprDataStore.getData(anprIdentifier);
+		if (anprData == null){
+			anprData = anprData = new ANPRData(anprIdentifier, publicationTime);
+		}
+		anprData.addSiteMeasurements(siteMeasurements);
+		
 		anprDataStore.updateData(anprData);
 	}
 }

@@ -15,6 +15,7 @@ public class MIDASStaticData implements DataObject {
 	
 	public MIDASStaticData(String midasStaticIdentifier, Date publicationTime, MeasurementSiteRecord midasStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.midasStaticIdentifier = midasStaticIdentifier;
 		this.midasStaticData = midasStaticData;
 	}

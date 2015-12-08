@@ -15,6 +15,7 @@ public class NwkNodeStaticData implements DataObject {
 	
 	public NwkNodeStaticData(String nwkNodeStaticIdentifier, Date publicationTime, PredefinedLocation nwkNodeStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.nwkNodeStaticIdentifier = nwkNodeStaticIdentifier;
 		this.nwkNodeStaticData = nwkNodeStaticData;
 	}

@@ -15,6 +15,7 @@ public class VMSStaticData implements DataObject {
 	
 	public VMSStaticData(String vmsStaticIdentifier, Date publicationTime, VmsUnitRecord vmsStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.vmsStaticIdentifier = vmsStaticIdentifier;
 		this.vmsStaticData = vmsStaticData;
 	}

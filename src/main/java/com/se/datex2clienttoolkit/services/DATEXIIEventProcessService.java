@@ -7,11 +7,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.se.datex2.schema.D2LogicalModel;
+import com.se.datex2.schema.LifeCycleManagement;
 import com.se.datex2.schema.Situation;
 import com.se.datex2.schema.SituationPublication;
+import com.se.datex2.schema.SituationRecord;
 import com.se.datex2clienttoolkit.datastores.EventDataStore;
 import com.se.datex2clienttoolkit.datastores.data.EventData;
 
@@ -22,6 +26,9 @@ public class DATEXIIEventProcessService extends DATEXIIProcessService {
 	final static private CharSequence fullRefreshText = "full refresh";
 	
 	private EventDataStore eventDataStore;
+	
+	@Value("${expireClearedEventsAfterMins}")
+	private Integer expireClearedEventsAfterMins;
 	
 	@Autowired
 	public DATEXIIEventProcessService(EventDataStore eventDataStore){
@@ -41,7 +48,9 @@ public class DATEXIIEventProcessService extends DATEXIIProcessService {
         if (feedType.toLowerCase().contains(fullRefreshText)) {
             log.info("Event Full Refresh received");
             fullRefresh=true;
-            eventDataStore.clearDataStore();
+            synchronized(eventDataStore){
+            	eventDataStore.clearDataStore();
+            }
         }
 		
         SituationPublication situationPublication = (SituationPublication)d2LogicalModel.getPayloadPublication();
@@ -75,7 +84,33 @@ public class DATEXIIEventProcessService extends DATEXIIProcessService {
 		
 		EventData eventData = new EventData(eventIdentifier, publicationTime, situation);
 		
-		eventDataStore.updateData(eventData);
+		synchronized(eventDataStore){
+			eventDataStore.updateData(eventData);
+		}
+	}
+	
+	@Scheduled(fixedRate = 1*60*1000)
+	public void processClearedEvents(){
+		synchronized(eventDataStore){
+			for (EventData eventData : eventDataStore.getAllEventData()){
+				Date publicationTime = eventData.getPublicationTime();
+				boolean isClear = false;
+				SituationRecord situationRecord = eventData.getEventData().getSituationRecord().get(0);
+				LifeCycleManagement lifeCycleManagement;
+		        if (situationRecord.getManagement() != null){
+		            lifeCycleManagement = situationRecord.getManagement().getLifeCycleManagement();
+		        } else {
+		            lifeCycleManagement = null;
+		        }
+				if (lifeCycleManagement != null && (lifeCycleManagement.isCancel() || lifeCycleManagement.isEnd())){
+		            isClear = true;
+		        }				
+				if (isClear && new Date().getTime() > publicationTime.getTime() + expireClearedEventsAfterMins*60*1000){
+					eventDataStore.removeData(eventData.getEventIdentifier());		
+					log.info("Removed Expired Event: "+eventData.getEventIdentifier());					
+				}
+			}
+		}
 	}
 
 }

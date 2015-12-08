@@ -15,6 +15,7 @@ public class TAMEStaticData implements DataObject {
 	
 	public TAMEStaticData(String tameStaticIdentifier, Date publicationTime, MeasurementSiteRecord tameStaticData) {
 		super();
+		this.publicationTime = publicationTime;
 		this.tameStaticIdentifier = tameStaticIdentifier;
 		this.tameStaticData = tameStaticData;
 	}
