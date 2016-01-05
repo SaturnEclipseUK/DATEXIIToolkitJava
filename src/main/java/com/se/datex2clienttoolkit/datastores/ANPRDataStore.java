@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.ANPRData;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 
+/**
+ * 
+ * This data store contains the ANPR data indexed by measurement site reference ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class ANPRDataStore extends DataStore {
 	public ANPRDataStore(){

@@ -1,5 +1,12 @@
 package com.se.datex2.common;
 
+/**
+ * 
+ * An Enum for DATEX II feed types.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 public enum FeedType {
 
 	ANPR("ANPR Journey Time Data"),

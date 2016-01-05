@@ -23,6 +23,14 @@ import org.springframework.stereotype.Service;
 
 import com.se.datex2.common.UnZipUtils;
 
+/**
+ * 
+ * This service retrieves the latest network model and forwards it to 
+ * the DATEX II Update Service for processing.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIINetworkModelUpdateService {
 

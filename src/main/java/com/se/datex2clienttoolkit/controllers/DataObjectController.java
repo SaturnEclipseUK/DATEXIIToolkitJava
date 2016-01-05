@@ -46,6 +46,13 @@ import com.se.datex2clienttoolkit.datastores.data.TMUStaticData;
 import com.se.datex2clienttoolkit.datastores.data.VMSData;
 import com.se.datex2clienttoolkit.datastores.data.VMSStaticData;
 
+/**
+ * 
+ * This HTTP controller provides a URL to retrieve each type DATEX II object in JSON format.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class DataObjectController {

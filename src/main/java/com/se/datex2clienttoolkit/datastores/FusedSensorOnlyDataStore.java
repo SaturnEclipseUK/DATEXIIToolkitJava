@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.FusedSensorOnlyData;
 
+/**
+ * 
+ * This data store contains the FusedSensorOnly data indexed by link ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class FusedSensorOnlyDataStore extends DataStore{
 

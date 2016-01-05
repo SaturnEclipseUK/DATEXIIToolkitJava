@@ -7,7 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.se.datex2.common.FeedType;
 
-
+/**
+ * 
+ * This service factory returns the correct DATEX II process service for given Feed Type.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIProcessServiceFactory {
 	final Logger log = LoggerFactory.getLogger(DATEXIIProcessServiceFactory.class);

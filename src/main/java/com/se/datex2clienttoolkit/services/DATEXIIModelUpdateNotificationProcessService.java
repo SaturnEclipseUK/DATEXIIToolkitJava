@@ -12,6 +12,14 @@ import com.se.datex2.schema.D2LogicalModel;
 import com.se.datex2.schema.GenericPublication;
 import com.se.datex2.schema.NtisModelVersionInformation;
 
+/**
+ * 
+ * This service processes ModelUpdateNotification DATEX II v2 messages (D2LogicalModel).
+ * When a notification is received, the Network Model Update function is invoked.  
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIModelUpdateNotificationProcessService extends DATEXIIProcessService {
 

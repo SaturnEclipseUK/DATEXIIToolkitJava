@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.TAMEStaticData;
 
+/**
+ * 
+ * This data store contains the TAMEStatic data indexed by measurement site record ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class TAMEStaticDataStore extends DataStore{
 

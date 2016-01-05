@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.VMSData;
 
+/**
+ * 
+ * This data store contains the VMS data indexed by VMS unit reference ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class VMSDataStore extends DataStore{
 

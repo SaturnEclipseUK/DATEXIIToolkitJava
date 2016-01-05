@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.MatrixSignalStaticData;
 
+/**
+ * 
+ * This data store contains the MatrixSignalStatic data indexed by VMS unit record ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class MatrixSignalStaticDataStore extends DataStore{
 

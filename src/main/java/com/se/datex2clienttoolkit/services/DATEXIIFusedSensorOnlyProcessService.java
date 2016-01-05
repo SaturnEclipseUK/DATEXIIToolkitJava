@@ -22,6 +22,14 @@ import com.se.datex2.schema.TravelTimeData;
 import com.se.datex2clienttoolkit.datastores.FusedSensorOnlyDataStore;
 import com.se.datex2clienttoolkit.datastores.data.FusedSensorOnlyData;
 
+/**
+ * 
+ * This service processes FusedSensorOnly DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the FusedSensorOnly data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIFusedSensorOnlyProcessService extends DATEXIIProcessService {
 

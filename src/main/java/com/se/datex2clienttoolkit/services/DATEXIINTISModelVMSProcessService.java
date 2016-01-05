@@ -18,6 +18,14 @@ import com.se.datex2clienttoolkit.datastores.VMSStaticDataStore;
 import com.se.datex2clienttoolkit.datastores.data.MatrixSignalStaticData;
 import com.se.datex2clienttoolkit.datastores.data.VMSStaticData;
 
+/**
+ * 
+ * This service processes VMS DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the MatrixSignalStatic and VMSStatic data stores.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIINTISModelVMSProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIINTISModelVMSProcessService.class);

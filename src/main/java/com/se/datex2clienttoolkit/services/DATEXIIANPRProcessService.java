@@ -15,6 +15,14 @@ import com.se.datex2.schema.SiteMeasurements;
 import com.se.datex2clienttoolkit.datastores.ANPRDataStore;
 import com.se.datex2clienttoolkit.datastores.data.ANPRData;
 
+/**
+ * 
+ * This service processes ANPR DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the ANPR data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIANPRProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIIANPRProcessService.class);
@@ -70,7 +78,7 @@ public class DATEXIIANPRProcessService extends DATEXIIProcessService {
 		
 		ANPRData anprData = (ANPRData)anprDataStore.getData(anprIdentifier);
 		if (anprData == null){
-			anprData = anprData = new ANPRData(anprIdentifier, publicationTime);
+			anprData = new ANPRData(anprIdentifier, publicationTime);
 		}
 		anprData.addSiteMeasurements(siteMeasurements);
 		

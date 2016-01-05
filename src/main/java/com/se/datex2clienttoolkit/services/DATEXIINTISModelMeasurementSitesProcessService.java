@@ -22,6 +22,14 @@ import com.se.datex2clienttoolkit.datastores.data.MIDASStaticData;
 import com.se.datex2clienttoolkit.datastores.data.TAMEStaticData;
 import com.se.datex2clienttoolkit.datastores.data.TMUStaticData;
 
+/**
+ * 
+ * This service processes MeasurementSites DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the TAME, MIDAS, ANPR and TMU data stores.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIINTISModelMeasurementSitesProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIINTISModelMeasurementSitesProcessService.class);

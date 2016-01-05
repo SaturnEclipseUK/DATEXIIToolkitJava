@@ -15,6 +15,14 @@ import com.se.datex2.schema.SiteMeasurements;
 import com.se.datex2clienttoolkit.datastores.MIDASDataStore;
 import com.se.datex2clienttoolkit.datastores.data.MIDASData;
 
+/**
+ * 
+ * This service processes MIDAS DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the MIDAS data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIMIDASProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIIMIDASProcessService.class);

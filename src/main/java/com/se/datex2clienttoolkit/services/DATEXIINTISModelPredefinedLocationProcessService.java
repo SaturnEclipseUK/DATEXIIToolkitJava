@@ -29,6 +29,15 @@ import com.se.datex2clienttoolkit.datastores.data.LinkShapeStaticData;
 import com.se.datex2clienttoolkit.datastores.data.NwkLinkStaticData;
 import com.se.datex2clienttoolkit.datastores.data.NwkNodeStaticData;
 
+/**
+ * 
+ * This service processes PredefinedLocation DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the NwkLinkStatic, NwkNodeStatic, NwkShapeStatic, 
+ * ANPRRouteStatic, HATRISSectionStatic and AlternateRouteStatic data stores.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIINTISModelPredefinedLocationProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIINTISModelPredefinedLocationProcessService.class);

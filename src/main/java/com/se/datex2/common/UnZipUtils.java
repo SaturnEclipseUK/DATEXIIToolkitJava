@@ -10,6 +10,13 @@ import java.util.zip.ZipInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * A helper class for ZIP functions.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 public class UnZipUtils {
 
 	final static Logger log = LoggerFactory.getLogger(UnZipUtils.class);

@@ -5,6 +5,13 @@ import java.util.Map;
 
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 
+/**
+ * 
+ * An abstract base class for all Data Stores
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 public abstract class DataStore {
 
 	Map<String, DataObject> dataMap;

@@ -15,7 +15,14 @@ import com.se.datex2.schema.VmsUnit;
 import com.se.datex2clienttoolkit.datastores.VMSDataStore;
 import com.se.datex2clienttoolkit.datastores.data.VMSData;
 
-
+/**
+ * 
+ * This service processes VMS DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the VMS data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIVMSProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIIVMSProcessService.class);

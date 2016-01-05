@@ -10,6 +10,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+/**
+ * 
+ * A JAXB helper service.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class JAXBService {
 	JAXBContext jc;

@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.se.datex2clienttoolkit.services.DATEXIIUpdateService;
 
+/**
+ * 
+ * A DATEX II HTTP controller to receive raw XML strings and add to the update service queue.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @RestController
 @RequestMapping("/subscriber")
 public class DATEXIIClientController {

@@ -15,6 +15,14 @@ import com.se.datex2.schema.SiteMeasurements;
 import com.se.datex2clienttoolkit.datastores.TMUDataStore;
 import com.se.datex2clienttoolkit.datastores.data.TMUData;
 
+/**
+ * 
+ * This service processes TMU DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the TMU data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIITMUProcessService extends DATEXIIProcessService {
 

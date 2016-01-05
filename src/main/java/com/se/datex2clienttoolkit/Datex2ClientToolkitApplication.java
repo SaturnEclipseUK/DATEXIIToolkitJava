@@ -9,6 +9,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * 
+ * Main spring boot application
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableScheduling

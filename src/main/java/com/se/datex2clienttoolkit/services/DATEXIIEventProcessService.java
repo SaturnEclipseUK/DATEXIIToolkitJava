@@ -19,6 +19,14 @@ import com.se.datex2.schema.SituationRecord;
 import com.se.datex2clienttoolkit.datastores.EventDataStore;
 import com.se.datex2clienttoolkit.datastores.data.EventData;
 
+/**
+ * 
+ * This service processes Event DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the Event data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIEventProcessService extends DATEXIIProcessService {
 	final Logger log = LoggerFactory.getLogger(DATEXIIEventProcessService.class);

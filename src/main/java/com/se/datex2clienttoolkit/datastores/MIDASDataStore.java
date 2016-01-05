@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.MIDASData;
 
+/**
+ * 
+ * This data store contains the MIDAS data indexed by measurement site reference ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class MIDASDataStore extends DataStore {
 	public MIDASDataStore(){

@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.EventData;
 
+/**
+ * 
+ * This data store contains the Event data indexed by event ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class EventDataStore extends DataStore{
 

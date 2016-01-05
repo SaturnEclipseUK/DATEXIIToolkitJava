@@ -22,6 +22,14 @@ import com.se.datex2.schema.TravelTimeData;
 import com.se.datex2clienttoolkit.datastores.FusedFVDAndSensorDataStore;
 import com.se.datex2clienttoolkit.datastores.data.FusedFVDAndSensorData;
 
+/**
+ * 
+ * This service processes FusedFVDAndSensor DATEX II v2 messages (D2LogicalModel).
+ * The payloads are inserted into the FusedFVDAndSensor data store.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Service
 public class DATEXIIFusedFVDAndSensorProcessService extends
 		DATEXIIProcessService {

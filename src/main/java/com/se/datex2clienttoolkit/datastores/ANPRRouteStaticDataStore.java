@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.ANPRRouteStaticData;
 
+/**
+ * 
+ * This data store contains the ANPRRouteStatic data indexed by predefined location ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class ANPRRouteStaticDataStore extends DataStore{
 

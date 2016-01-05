@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.TMUData;
 
+/**
+ * 
+ * This data store contains the TMU data indexed by measurement site reference ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class TMUDataStore extends DataStore {
 	public TMUDataStore(){

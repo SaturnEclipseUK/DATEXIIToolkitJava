@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.NwkLinkStaticData;
 
+/**
+ * 
+ * This data store contains the NwkLinkStatic data indexed by predefined location ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class NwkLinkStaticDataStore extends DataStore{
 

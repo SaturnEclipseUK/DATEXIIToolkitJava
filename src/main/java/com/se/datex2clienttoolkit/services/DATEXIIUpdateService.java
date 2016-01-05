@@ -22,6 +22,14 @@ import org.springframework.stereotype.Component;
 import com.se.datex2.common.FeedType;
 import com.se.datex2.schema.D2LogicalModel;
 
+/**
+ * 
+ * This service processes receives raw DATEX II XML formatted data and adds to a queue.
+ * In turn, each XML string is removed from the queue, parsed and forwarded to the correct process service.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class DATEXIIUpdateService {
 	final Logger logger = LoggerFactory.getLogger(DATEXIIUpdateService.class);

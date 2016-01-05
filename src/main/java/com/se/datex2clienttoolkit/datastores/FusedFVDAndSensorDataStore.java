@@ -7,6 +7,13 @@ import org.springframework.stereotype.Component;
 import com.se.datex2clienttoolkit.datastores.data.DataObject;
 import com.se.datex2clienttoolkit.datastores.data.FusedFVDAndSensorData;
 
+/**
+ * 
+ * This data store contains the FusedFVDAndSensor data indexed by link ID.
+ * 
+ * @author Saturn Eclipse Limited
+ *
+ */
 @Component
 public class FusedFVDAndSensorDataStore extends DataStore{
 
