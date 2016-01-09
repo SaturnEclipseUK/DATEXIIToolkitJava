@@ -1,6 +1,10 @@
 package com.se.datex2clienttoolkit.services;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.Date;
+
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +32,24 @@ public class DATEXIIModelUpdateNotificationProcessService extends DATEXIIProcess
 	@Autowired
 	DATEXIINetworkModelUpdateService datexiiNetworkModelUpdateService;
 	
+	@Value("${loadNwkModelOnStartup}")
+	private Boolean loadNwkModelOnStartup;
+	
 	@Value("${ntisNwkModelBaseUrl}")
 	private String url;
+	
+	@Value("${ntisNwkModelUsername}")
+	private String username;
+	
+	@Value("${ntisNwkModelPassword}")
+	private String password;
+	
+	@PostConstruct
+	public void initialise(){
+		if (loadNwkModelOnStartup && url != null){
+			datexiiNetworkModelUpdateService.updateNetworkModel(url, username, password);	
+		}
+	}
 	
 	@Override
 	public void processMessage(D2LogicalModel d2LogicalModel) {
@@ -42,7 +62,7 @@ public class DATEXIIModelUpdateNotificationProcessService extends DATEXIIProcess
 		String modelFilename = ntisModelVersionInformation.getModelFilename();
 		
 		if (url != null){
-			datexiiNetworkModelUpdateService.updateNetworkModel(url+modelFilename);	
+			datexiiNetworkModelUpdateService.updateNetworkModel(url, username, password);	
 		} else {
 			log.error("NTIS_NETWORK_MODEL_BASE_URL is not set in application.properties file");
 		}

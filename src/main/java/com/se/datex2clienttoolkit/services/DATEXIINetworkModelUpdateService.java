@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.HttpMethodParams;
@@ -19,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import com.se.datex2.common.UnZipUtils;
@@ -39,27 +42,17 @@ public class DATEXIINetworkModelUpdateService {
 	@Autowired
 	DATEXIIUpdateService datexIIUpdateService;
 	
-	@Value("${loadCachedNwkModelOnStartup}")
-	private Boolean loadCachedNwkModelOnStartup;
-	
 	String NWK_MODEL_PATH = "nwk_model.zip";
 	String NWK_MODEL_DIRECTORY = "nwk_model";
-    
-	@PostConstruct
-	public void initialise(){
-		if (loadCachedNwkModelOnStartup && Files.exists(new File(NWK_MODEL_DIRECTORY).toPath())){
-			this.parseNetworkModelXMLFiles();
-		}
-	}
-	
-	public void updateNetworkModel(String url){
+    	
+	public void updateNetworkModel(String url, String username, String password){
 		
 		this.removeExistingNetworkModel();
 		
 		if (url.startsWith("file:///")){
 			copyNetworkModel(url);
 		} else {
-			this.fetchNetworkModel(url);
+			this.fetchNetworkModel(url, username, password);
 		}
 	    
 	    this.unzipNetworkModel();
@@ -87,12 +80,18 @@ public class DATEXIINetworkModelUpdateService {
 		}
 	}
 	
-	private void fetchNetworkModel(String url){
+	private void fetchNetworkModel(String url, String username, String password){
 		// Create an instance of HttpClient.
 	    HttpClient client = new HttpClient();
 	
 	    // Create a method instance.
 	    GetMethod method = new GetMethod(url);
+	    
+	    // Set credentials
+	    String auth = username + ":" + password;
+	    byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("ISO-8859-1")));
+	    String authHeader = "Basic " + new String(encodedAuth);
+	    method.setRequestHeader(HttpHeaders.AUTHORIZATION, authHeader);
 	    
 	    // Provide custom retry handler is necessary
 	    method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 

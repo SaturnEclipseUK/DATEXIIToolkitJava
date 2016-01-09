@@ -19,7 +19,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'io.spring.dependency-management' 
 apply plugin: 'war'
 
-version = '0.1'
+version = '1.1'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -29,6 +29,9 @@ war {
 
 repositories {
     mavenCentral()
+    flatDir {
+       dirs 'lib'
+   	}
 }
 
 configurations {
@@ -43,6 +46,8 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") 
     
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.4-1'
+    
+    compile name: '2wayfilter-1.2'
 }
 
 

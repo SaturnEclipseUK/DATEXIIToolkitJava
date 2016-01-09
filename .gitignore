@@ -1,5 +1,7 @@
 build/
 bin/
+lib/
+logs/
 nwk_model*
 .classpath
 .gradle

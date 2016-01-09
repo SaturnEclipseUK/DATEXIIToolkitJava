@@ -1,0 +1,7 @@
+v1.0: 
+	- Initial Release
+v1.1: 
+	- Added GZIP compression filter for applicaiton servers to handle NTIS feed
+	- Updated NTIS network model download URL (ntisNwkModelBaseUrl)
+	- Added client authentication for NTIS network model download (ntisNwkModelUsername & ntisNwkModelPassword)
+	- Added boolean config parameter to load network model on system startup (loadNwkModelOnStartup)
