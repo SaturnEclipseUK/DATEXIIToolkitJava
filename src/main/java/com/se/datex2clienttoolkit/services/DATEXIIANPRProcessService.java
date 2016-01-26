@@ -44,8 +44,7 @@ public class DATEXIIANPRProcessService extends DATEXIIProcessService {
 		if (log.isDebugEnabled()){
             log.debug("ANPR Update");
         }
-		anprDataStore.clearDataStore();
-        
+		
         MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.getPayloadPublication();
  
         if (measuredDataPublication != null) {

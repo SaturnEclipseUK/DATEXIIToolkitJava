@@ -45,9 +45,7 @@ public class DATEXIITMUProcessService extends DATEXIIProcessService {
 		if (log.isDebugEnabled()){
             log.debug("TMU Update");
         }
-        
-		tmuDataStore.clearDataStore();
-		
+        		
 		MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.getPayloadPublication();
  
         if (measuredDataPublication != null) {

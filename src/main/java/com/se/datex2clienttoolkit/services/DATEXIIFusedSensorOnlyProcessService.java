@@ -52,9 +52,7 @@ public class DATEXIIFusedSensorOnlyProcessService extends DATEXIIProcessService 
 		if (log.isDebugEnabled()){
             log.debug("FusedSensorOnlyData Update");
         }
-        
-		fusedSensorOnlyDataStore.clearDataStore();
-		
+        		
         ElaboratedDataPublication elaboratedDataPublication = (ElaboratedDataPublication)d2LogicalModel.getPayloadPublication();
  
         if (elaboratedDataPublication != null) {
