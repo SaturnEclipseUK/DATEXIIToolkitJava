@@ -44,9 +44,7 @@ public class DATEXIIMIDASProcessService extends DATEXIIProcessService {
 		if (log.isDebugEnabled()){
             log.debug("MIDAS Update");
         }
-        
-		midasDataStore.clearDataStore();
-		
+       
 		MeasuredDataPublication measuredDataPublication = (MeasuredDataPublication)d2LogicalModel.getPayloadPublication();
  
         if (measuredDataPublication != null) {
