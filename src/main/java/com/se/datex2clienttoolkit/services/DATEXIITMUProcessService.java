@@ -1,8 +1,11 @@
 package com.se.datex2clienttoolkit.services;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,9 +61,18 @@ public class DATEXIITMUProcessService extends DATEXIIProcessService {
                 log.debug("TMU Update("+ siteMeasurementsList.size() + " objects)");
             }
     		
+    		Map<String, List<SiteMeasurements>> siteMeasurementsIndex = 
+    				new HashMap<String, List<SiteMeasurements>>();
+    		
             while (iterator.hasNext()){
             	SiteMeasurements siteMeasurements = iterator.next();
-                processSituation(siteMeasurements, publicationTime);
+                processSituation(siteMeasurements, publicationTime, siteMeasurementsIndex);
+            }
+            
+            for (String tmuIdentifier : siteMeasurementsIndex.keySet()){
+            	TMUData tmuData = new TMUData(tmuIdentifier, publicationTime, siteMeasurementsIndex.get(tmuIdentifier));
+    		
+            	tmuDataStore.updateData(tmuData);
             }
         }
         
@@ -69,16 +81,23 @@ public class DATEXIITMUProcessService extends DATEXIIProcessService {
         }
 	}
 	
-	private void processSituation(SiteMeasurements siteMeasurements, Date publicationTime) {
+	private void processSituation(SiteMeasurements siteMeasurements, Date publicationTime, 
+			Map<String, List<SiteMeasurements>> siteMeasurementsIndex) {
 		String tmuIdentifier = siteMeasurements.getMeasurementSiteReference().getId();
 
 		if (log.isTraceEnabled()){
-			log.trace("Processing TMU Identifier("+tmuIdentifier+")");
+			log.trace("Processing TMU Identifier("+tmuIdentifier+")"); 
 		}
 		
-		TMUData tmuData = new TMUData(tmuIdentifier, publicationTime, siteMeasurements);
+		List<SiteMeasurements> siteMeasurementsList;
+		if (siteMeasurementsIndex.containsKey(tmuIdentifier)){
+			siteMeasurementsList = siteMeasurementsIndex.get(tmuIdentifier);
+		} else {
+			siteMeasurementsList = new LinkedList<SiteMeasurements>();
+			siteMeasurementsIndex.put(tmuIdentifier, siteMeasurementsList);
+		}
+		siteMeasurementsList.add(siteMeasurements);
 		
-		tmuDataStore.updateData(tmuData);
 	}
 
 

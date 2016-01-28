@@ -73,6 +73,7 @@ public class DATEXIINetworkModelUpdateService {
 	
 	private void copyNetworkModel(String path){
 		path = path.replace("file:///", "");
+		log.info("Copying network model: "+path);
 		try {
 			Files.copy(new File(path).toPath(), new File(NWK_MODEL_PATH).toPath());
 		} catch (IOException e) {

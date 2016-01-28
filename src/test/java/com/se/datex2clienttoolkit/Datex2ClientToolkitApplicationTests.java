@@ -19,6 +19,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.se.datex2clienttoolkit.controllers.DATEXIIClientController;
 import com.se.datex2clienttoolkit.controllers.DataObjectController;
+import com.se.datex2clienttoolkit.services.DATEXIIModelUpdateNotificationProcessService;
+import com.se.datex2clienttoolkit.services.DATEXIINetworkModelUpdateService;
 import com.se.datex2clienttoolkit.services.DATEXIIUpdateService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,8 +38,12 @@ public class Datex2ClientToolkitApplicationTests {
 	@Autowired
 	DATEXIIUpdateService datexIIUpdateService;
 	
+	@Autowired
+	DATEXIIModelUpdateNotificationProcessService dATEXIIModelUpdateNotificationProcessService;
+	
 	@Before
 	public void setup(){
+		
 		URL url = null;
 			url = this.getClass().getResource("/VMS_and_Matrix_Signal_Status_Data_-_Full_Refresh_3793697241479015.xml");
 	        uploadFile(url);

@@ -1,19 +1,20 @@
 package com.se.datex2clienttoolkit.datastores.data;
 
 import java.util.Date;
+import java.util.List;
 
 import com.se.datex2.schema.SiteMeasurements;
 
 public class TMUData implements DataObject {
 	private String tmuIdentifier;
 	private Date publicationTime;
-	private SiteMeasurements tmuData;
+	private List<SiteMeasurements> tmuData;
 	
 	public TMUData() {
 	}
 	
 	public TMUData(String tmuIdentifier, Date publicationTime,
-			SiteMeasurements tmuData) {
+			List<SiteMeasurements> tmuData) {
 		super();
 		this.tmuIdentifier = tmuIdentifier;
 		this.publicationTime = publicationTime;
@@ -28,7 +29,7 @@ public class TMUData implements DataObject {
 		return publicationTime;
 	}
 
-	public SiteMeasurements getTMUData() {
+	public List<SiteMeasurements> getTMUData() {
 		return tmuData;
 	}
 	
