@@ -5,3 +5,7 @@ v1.1:
 	- Updated NTIS network model download URL (ntisNwkModelBaseUrl)
 	- Added client authentication for NTIS network model download (ntisNwkModelUsername & ntisNwkModelPassword)
 	- Added boolean config parameter to load network model on system startup (loadNwkModelOnStartup)
+v1.2:
+	- Removed clear data store for MIDAS, TMU and ANPR
+v1.3:
+	- TMU provided as list.
